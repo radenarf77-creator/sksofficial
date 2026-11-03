@@ -2,48 +2,68 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SKS | General Contractor Yogyakarta & Purbalingga</title>
 <meta name="description" content="General Contractor Yogyakarta & Purbalingga. Build Beyond Limits.">
+<meta name="theme-color" content="#0b1f4d">
+<link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#0b1f4d;--gold:#f2a516;--ink:#fff;--glass:rgba(255,255,255,.12)}
+  /* Semua ukuran pakai rem, jadi otomatis membesar di layar besar (FHD, 2K, 4K) */
+  html{font-size:16px}
+  @media(min-width:1600px){html{font-size:20px}}
+  @media(min-width:2200px){html{font-size:26px}}
+  @media(min-width:3000px){html{font-size:32px}}
+
+  :root{--navy:#0b1f4d;--gold:#f2a516;--ink:#fff}
   *{box-sizing:border-box;margin:0}
-  html,body{height:100%}
   body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:var(--navy);
-    display:flex;justify-content:center;padding:48px 20px;min-height:100%}
+    min-height:100vh;min-height:100svh;display:flex;justify-content:center;align-items:center;
+    padding:max(2.5rem,env(safe-area-inset-top)) 1.25rem max(2.5rem,env(safe-area-inset-bottom))}
   .bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-  .shade{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,31,77,.55),rgba(11,31,77,.82))}
-  main{width:100%;max-width:440px;text-align:center}
-  .logo{width:128px;height:128px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;
-    background:var(--navy);border:2px solid var(--gold);font-weight:800;font-size:30px;font-style:italic;color:var(--gold);overflow:hidden}
-  .logo img{width:100%;height:100%;object-fit:contain;padding:16px}
-  h1{font-size:22px;font-weight:800;letter-spacing:.2px}
-  .tag{margin:4px auto 28px;font-size:15px;line-height:1.5;max-width:30ch;color:rgba(255,255,255,.88)}
-  .tag b{color:var(--gold)}
-  ul{list-style:none;padding:0;display:grid;gap:12px}
-  a.link{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:14px;color:var(--ink);text-decoration:none;
-    background:var(--glass);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    transition:background .2s,color .2s,transform .2s}
+  .shade{position:fixed;inset:0;z-index:-1;
+    background:radial-gradient(ellipse at center,rgba(8,22,58,.7) 0%,rgba(8,22,58,.88) 100%)}
+
+  main{width:100%;max-width:28rem;text-align:center}
+
+  /* Logo: tanpa lingkaran, muncul seperti goresan kuas, lalu berkilau dan melayang pelan */
+  .logo{position:relative;display:inline-block;width:min(15rem,70vw);margin-bottom:1.1rem;animation:float 6s ease-in-out 1.4s infinite}
+  .logo img{display:block;width:100%;height:auto;animation:wipe 1.2s cubic-bezier(.65,0,.2,1) both,glow 3.5s ease-in-out 1.4s infinite}
+  .logo::after{content:"";position:absolute;inset:0;
+    -webkit-mask:url(logo.png) center/100% 100% no-repeat;mask:url(logo.png) center/100% 100% no-repeat;
+    background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.95) 50%,transparent 62%) 150% 0/300% 100% no-repeat;
+    animation:shine 3.5s ease-in-out 1.6s infinite}
+  @keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  @keyframes float{50%{transform:translateY(-6px)}}
+  @keyframes glow{0%,100%{filter:drop-shadow(0 0 6px rgba(242,165,22,.25))}50%{filter:drop-shadow(0 0 18px rgba(242,165,22,.65))}}
+  @keyframes shine{0%{background-position:150% 0}60%,100%{background-position:-50% 0}}
+
+  .tag{margin:0 auto 1.75rem;max-width:26rem;font-size:1rem;line-height:1.55;color:rgba(255,255,255,.9)}
+  .tag b{color:var(--gold);font-weight:600}
+
+  ul{list-style:none;padding:0;display:grid;gap:.75rem}
+  a.link{display:flex;align-items:center;gap:1rem;padding:.9rem 1.1rem;border-radius:1rem;color:var(--ink);text-decoration:none;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .2s,color .2s,transform .2s}
+  a.link svg{width:1.4rem;height:1.4rem;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;color:var(--gold);transition:color .2s}
+  .t{flex:1;text-align:center;font-weight:600;font-size:1rem;padding-right:1.4rem}
+  .t small{display:block;font-weight:400;font-size:.76rem;opacity:.85;margin-top:.15rem}
   a.link:hover,a.link:focus-visible{background:var(--gold);color:var(--navy);transform:translateY(-2px);outline:none}
+  a.link:hover svg,a.link:focus-visible svg{color:var(--navy)}
   a.link:focus-visible{box-shadow:0 0 0 3px #fff}
-  a.link svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-  .t{flex:1;text-align:center;font-weight:600;padding-right:22px}
-  .t small{display:block;font-weight:400;font-size:12px;opacity:.85;margin-top:2px}
-  footer{margin-top:28px;font-size:12px;opacity:.7}
-  @media(prefers-reduced-motion:reduce){a.link{transition:none}}
+  footer{margin-top:1.75rem;font-size:.75rem;opacity:.65}
+
+  @media(prefers-reduced-motion:reduce){*,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<video class="bg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-  <source src="background.mp4" type="video/mp4">
-</video>
+<video class="bg" id="bg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
 <div class="shade"></div>
 
 <main>
-  <div class="logo"><img src="logo.png" alt="Logo SKS" onerror="this.remove();this.parentNode.textContent='SKS'"></div>
+  <div class="logo"><img src="logo.png" alt="SKS"></div>
   <p class="tag">General Contractor Yogyakarta & Purbalingga. <b>Build Beyond Limits.</b></p>
 
   <ul>
@@ -68,7 +88,15 @@
 </main>
 
 <script>
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelector('.bg').pause();
+  // Pilih video sesuai layar: portrait (HP) atau landscape (laptop/PC)
+  var v = document.getElementById('bg'), cur = '';
+  function pick(){
+    var f = innerWidth >= innerHeight ? 'bg-desktop.mp4' : 'bg-mobile.mp4';
+    if (f === cur) return; cur = f; v.src = f; v.load();
+    var p = v.play(); if (p && p.catch) p.catch(function(){});
+  }
+  pick(); addEventListener('resize', pick);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) v.pause();
 </script>
 </body>
 </html>
